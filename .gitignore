@@ -136,5 +136,8 @@ yarn-error.log*
 
 package-lock.json
 
-# Ignore Angular CLI cache and other internal files
-/.angular/
+# Ignore .angular directories recursively
+**/.angular/
+
+# Ignore dist directories recursively
+**/dist/
