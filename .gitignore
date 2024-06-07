@@ -135,3 +135,6 @@ yarn-error.log*
 .vscode
 
 package-lock.json
+
+# Ignore Angular CLI cache and other internal files
+/.angular/
