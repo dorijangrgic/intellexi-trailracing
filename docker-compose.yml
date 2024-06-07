@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+
+  command-service:
+    container_name: command-service
+    build:
+      context: backend/src/Intellexi.TrailRacing.CommandService
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - intellexi-trailracing-db
+      - rabbitmq
+    networks:
+      - backend
+
+  query-service:
+    container_name: query-service
+    build:
+      context: backend/src/Intellexi.TrailRacing.QueryService
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - intellexi-trailracing-db
+      - rabbitmq
+    networks:
+      - backend
+
+  web-app:
+    container_name: web-app
+    build:
+      context: frontend/intellexi-trailracing-webapp
+      dockerfile: Dockerfile
+    ports:
+      - "8083:80"
+    depends_on:
+      - command-service
+      - query-service
+    networks:
+      - backend
+      - frontend
+
+  rabbitmq:
+    container_name: message-broker
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    networks:
+      - backend
+
+  intellexi-trailracing-db:
+    container_name: intellexi-trailracing-db
+    image: postgres:15.1
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: intellexi-trailracing-db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+volumes:
+  postgres_data:
+
+networks:
+  frontend:
+  backend:
