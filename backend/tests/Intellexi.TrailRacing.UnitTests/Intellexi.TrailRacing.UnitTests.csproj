@@ -17,4 +17,12 @@
         <PackageReference Include="coverlet.collector" Version="6.0.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Handlers\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Intellexi.TrailRacing.Tests.Shared\Intellexi.TrailRacing.Tests.Shared.csproj" />
+    </ItemGroup>
+
 </Project>

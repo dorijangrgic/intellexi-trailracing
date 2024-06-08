@@ -13,17 +13,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intellexi.TrailRacing.Comma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intellexi.TrailRacing.QueryService", "src\Intellexi.TrailRacing.QueryService\Intellexi.TrailRacing.QueryService.csproj", "{E1596A87-EEE3-4AB8-9A67-25497399D4C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intellexi.TrailRacing.Application.UnitTest", "tests\Intellexi.TrailRacing.Application.UnitTest\Intellexi.TrailRacing.Application.UnitTest.csproj", "{00BBD910-5BD5-4747-8E4B-205F3ECA0625}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intellexi.TrailRacing.CommandService.IntegrationTest", "tests\Intellexi.TrailRacing.CommandService.IntegrationTest\Intellexi.TrailRacing.CommandService.IntegrationTest.csproj", "{7D23A83C-B60F-4AA9-A1AE-5F3E9B307FD4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intellexi.TrailRacing.QueryService.IntegrationTest", "tests\Intellexi.TrailRacing.QueryService.IntegrationTest\Intellexi.TrailRacing.QueryService.IntegrationTest.csproj", "{4D5473B8-EE48-40CD-9864-63DD3CC6C365}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intellexi.TrailRacing.IntegrationTests", "tests\Intellexi.TrailRacing.IntegrationTests\Intellexi.TrailRacing.IntegrationTests.csproj", "{4D5473B8-EE48-40CD-9864-63DD3CC6C365}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C551A161-2953-48F2-B3E6-64CAA386F2AF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AC8DC72D-E914-481E-8DD2-CEC07FE25CD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intellexi.TrailRacing.Domain.UnitTest", "tests\Intellexi.TrailRacing.Domain.UnitTest\Intellexi.TrailRacing.Domain.UnitTest.csproj", "{FF0F719B-2851-4EA8-9CDC-D335234F3A7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intellexi.TrailRacing.Shared", "src\Intellexi.TrailRacing.Shared\Intellexi.TrailRacing.Shared.csproj", "{1EBE6D98-48D2-4A7F-B19E-51062A574BE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intellexi.TrailRacing.UnitTests", "tests\Intellexi.TrailRacing.UnitTests\Intellexi.TrailRacing.UnitTests.csproj", "{BD1ADBB1-D7F0-436B-BBA2-373730399EE3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intellexi.TrailRacing.Tests.Shared", "tests\Intellexi.TrailRacing.Tests.Shared\Intellexi.TrailRacing.Tests.Shared.csproj", "{F8E22642-DD0E-4B92-A679-C16E099A6F02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,32 +54,32 @@ Global
 		{E1596A87-EEE3-4AB8-9A67-25497399D4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1596A87-EEE3-4AB8-9A67-25497399D4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1596A87-EEE3-4AB8-9A67-25497399D4C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00BBD910-5BD5-4747-8E4B-205F3ECA0625}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00BBD910-5BD5-4747-8E4B-205F3ECA0625}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00BBD910-5BD5-4747-8E4B-205F3ECA0625}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00BBD910-5BD5-4747-8E4B-205F3ECA0625}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D23A83C-B60F-4AA9-A1AE-5F3E9B307FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D23A83C-B60F-4AA9-A1AE-5F3E9B307FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D23A83C-B60F-4AA9-A1AE-5F3E9B307FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D23A83C-B60F-4AA9-A1AE-5F3E9B307FD4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D5473B8-EE48-40CD-9864-63DD3CC6C365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D5473B8-EE48-40CD-9864-63DD3CC6C365}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D5473B8-EE48-40CD-9864-63DD3CC6C365}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D5473B8-EE48-40CD-9864-63DD3CC6C365}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF0F719B-2851-4EA8-9CDC-D335234F3A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF0F719B-2851-4EA8-9CDC-D335234F3A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF0F719B-2851-4EA8-9CDC-D335234F3A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF0F719B-2851-4EA8-9CDC-D335234F3A7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EBE6D98-48D2-4A7F-B19E-51062A574BE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EBE6D98-48D2-4A7F-B19E-51062A574BE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EBE6D98-48D2-4A7F-B19E-51062A574BE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EBE6D98-48D2-4A7F-B19E-51062A574BE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD1ADBB1-D7F0-436B-BBA2-373730399EE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD1ADBB1-D7F0-436B-BBA2-373730399EE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD1ADBB1-D7F0-436B-BBA2-373730399EE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD1ADBB1-D7F0-436B-BBA2-373730399EE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8E22642-DD0E-4B92-A679-C16E099A6F02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8E22642-DD0E-4B92-A679-C16E099A6F02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8E22642-DD0E-4B92-A679-C16E099A6F02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8E22642-DD0E-4B92-A679-C16E099A6F02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7D23A83C-B60F-4AA9-A1AE-5F3E9B307FD4} = {AC8DC72D-E914-481E-8DD2-CEC07FE25CD6}
-		{00BBD910-5BD5-4747-8E4B-205F3ECA0625} = {AC8DC72D-E914-481E-8DD2-CEC07FE25CD6}
 		{4D5473B8-EE48-40CD-9864-63DD3CC6C365} = {AC8DC72D-E914-481E-8DD2-CEC07FE25CD6}
 		{7220FBE6-30F1-453A-8F7E-28D1C9783F31} = {C551A161-2953-48F2-B3E6-64CAA386F2AF}
 		{69EC4072-9E1C-40EC-8686-5913920E3BC2} = {C551A161-2953-48F2-B3E6-64CAA386F2AF}
 		{320F8F52-F051-40E1-8CA9-E65098A67B9D} = {C551A161-2953-48F2-B3E6-64CAA386F2AF}
 		{8E1F9D92-2487-4449-9EA6-331047DC4341} = {C551A161-2953-48F2-B3E6-64CAA386F2AF}
 		{E1596A87-EEE3-4AB8-9A67-25497399D4C0} = {C551A161-2953-48F2-B3E6-64CAA386F2AF}
-		{FF0F719B-2851-4EA8-9CDC-D335234F3A7B} = {AC8DC72D-E914-481E-8DD2-CEC07FE25CD6}
+		{1EBE6D98-48D2-4A7F-B19E-51062A574BE0} = {C551A161-2953-48F2-B3E6-64CAA386F2AF}
+		{BD1ADBB1-D7F0-436B-BBA2-373730399EE3} = {AC8DC72D-E914-481E-8DD2-CEC07FE25CD6}
+		{F8E22642-DD0E-4B92-A679-C16E099A6F02} = {AC8DC72D-E914-481E-8DD2-CEC07FE25CD6}
 	EndGlobalSection
 EndGlobal

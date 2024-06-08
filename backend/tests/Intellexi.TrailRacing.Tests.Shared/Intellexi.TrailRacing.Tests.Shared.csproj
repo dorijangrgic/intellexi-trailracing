@@ -3,15 +3,15 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>disable</Nullable>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Ardalis.GuardClauses" Version="4.5.0" />
+      <ProjectReference Include="..\..\src\Intellexi.TrailRacing.Domain\Intellexi.TrailRacing.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Intellexi.TrailRacing.Shared\Intellexi.TrailRacing.Shared.csproj" />
+      <PackageReference Include="FluentAssertions" Version="6.12.0" />
     </ItemGroup>
 
 </Project>
