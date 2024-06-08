@@ -12,7 +12,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
     depends_on:
-      - intellexi-trailracing-db
+      - db
       - rabbitmq
     networks:
       - backend
@@ -27,7 +27,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Development
     depends_on:
-      - intellexi-trailracing-db
+      - db
       - rabbitmq
     networks:
       - backend
@@ -58,15 +58,15 @@ services:
     networks:
       - backend
 
-  intellexi-trailracing-db:
-    container_name: intellexi-trailracing-db
+  db:
+    container_name: db
     image: postgres:15.1
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
-      POSTGRES_DB: intellexi-trailracing-db
+      POSTGRES_DB: intellexi
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
