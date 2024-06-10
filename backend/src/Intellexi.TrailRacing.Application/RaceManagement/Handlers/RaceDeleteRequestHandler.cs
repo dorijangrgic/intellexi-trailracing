@@ -4,5 +4,5 @@ using Intellexi.TrailRacing.Application.Services;
 
 namespace Intellexi.TrailRacing.Application.RaceManagement.Handlers;
 
-public class RaceCreateRequestHandler(IMessageSender messageSender)
-    : BaseRequestHandler<RaceCreateRequest>(messageSender);
+public class RaceDeleteRequestHandler(IMessageSender messageSender)
+    : BaseRequestHandler<RaceDeleteRequest>(messageSender);

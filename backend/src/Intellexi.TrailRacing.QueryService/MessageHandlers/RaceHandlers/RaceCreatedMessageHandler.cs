@@ -2,7 +2,7 @@
 using Intellexi.TrailRacing.Application.Services;
 using Intellexi.TrailRacing.Domain.Entities;
 
-namespace Intellexi.TrailRacing.QueryService.MessageHandlers;
+namespace Intellexi.TrailRacing.QueryService.MessageHandlers.RaceHandlers;
 
 public class RaceCreatedMessageHandler : IMessageHandler<RaceCreateRequest>
 {
@@ -10,6 +10,7 @@ public class RaceCreatedMessageHandler : IMessageHandler<RaceCreateRequest>
 
     public RaceCreatedMessageHandler(IGenericRepository<Race> raceRepository)
     {
+        ArgumentNullException.ThrowIfNull(raceRepository);
         _raceRepository = raceRepository;
     }
 

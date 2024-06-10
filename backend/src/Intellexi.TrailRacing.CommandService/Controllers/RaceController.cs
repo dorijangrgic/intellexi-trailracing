@@ -1,24 +1,30 @@
 ﻿using Intellexi.TrailRacing.Application.RaceManagement.Requests;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Intellexi.TrailRacing.CommandService.Controllers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class RaceController : ControllerBase
+public class RaceController : BaseApiController
 {
-    private readonly IMediator _mediator;
-
-    public RaceController(IMediator mediator)
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] RaceCreateRequest request)
     {
-        _mediator = mediator;
+        await Mediator.Send(request);
+        return Created();
     }
     
-    [HttpPost]
-    public async Task<IActionResult> CreateNewRace([FromBody] RaceCreateRequest command)
+    [HttpPut("{raceId}")]
+    public async Task<IActionResult> Update([FromRoute] Guid raceId, [FromBody] RaceUpdateRequest request)
     {
-        await _mediator.Send(command);
-        return Ok();
+        request.RaceId = raceId;
+        await Mediator.Send(request);
+        return NoContent();
+    }
+    
+    [HttpDelete("{raceId}")]
+    public async Task<IActionResult> Delete([FromRoute] Guid raceId)
+    {
+        var request = new RaceDeleteRequest { RaceId = raceId };
+        await Mediator.Send(request);
+        return NoContent();
     }
 }

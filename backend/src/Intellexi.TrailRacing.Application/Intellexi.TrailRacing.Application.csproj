@@ -17,10 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ApplicationManagement\Handlers\" />
-      <Folder Include="ApplicationManagement\Requests\" />
       <Folder Include="ApplicationManagement\Responses\" />
-      <Folder Include="ApplicationManagement\Validators\" />
       <Folder Include="RaceManagement\Responses\" />
     </ItemGroup>
 

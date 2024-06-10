@@ -4,5 +4,5 @@ namespace Intellexi.TrailRacing.Application.RaceManagement.Requests;
 
 public class RaceDeleteRequest : IRequest
 {
-    public Guid Id { get; set; }
+    public Guid RaceId { get; set; }
 }
