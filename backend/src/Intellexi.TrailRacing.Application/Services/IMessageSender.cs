@@ -2,5 +2,5 @@
 
 public interface IMessageSender
 {
-    Task Send<T>(T message, string routingKey);
+    void Send<T>(T message);
 }

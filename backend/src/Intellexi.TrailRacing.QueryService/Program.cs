@@ -1,5 +1,6 @@
 using Intellexi.TrailRacing.Application;
 using Intellexi.TrailRacing.Persistence;
+using Intellexi.TrailRacing.QueryService;
 using Intellexi.TrailRacing.RabbitMq;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ builder.Services
     .AddRabbitMq(builder.Configuration)
     .AddPersistence(builder.Configuration)
     .AddControllers();
+
+builder.Services.AddHostedService<RabbitMqConsumer>();
 
 var app = builder.Build();
 

@@ -14,8 +14,9 @@ public class RaceCreateRequestHandler : IRequestHandler<RaceCreateRequest>
         _messageSender = messageSender;
     }
 
-    public async Task Handle(RaceCreateRequest request, CancellationToken cancellationToken)
+    public Task Handle(RaceCreateRequest request, CancellationToken cancellationToken)
     {
-        await _messageSender.Send(request, "race_create");
+        _messageSender.Send(request);
+        return Task.CompletedTask;
     }
 }
