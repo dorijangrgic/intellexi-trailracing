@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using Intellexi.TrailRacing.Application.Services;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 
 namespace Intellexi.TrailRacing.RabbitMq;
@@ -28,8 +29,8 @@ public class MessageSender : IMessageSender, IDisposable
 
     public void Send<T>(T message)
     {
-        // serialize domain message object to JSON
-        var body = Encoding.UTF8.GetBytes(message.ToString() ?? string.Empty);
+        var jsonBody = JsonConvert.SerializeObject(message);
+        var body = Encoding.UTF8.GetBytes(jsonBody);
         _channel.BasicPublish(
             exchange: "",
             routingKey: _config.QueueName,

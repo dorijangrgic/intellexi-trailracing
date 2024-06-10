@@ -1,3 +1,4 @@
+using System.Reflection;
 using Intellexi.TrailRacing.Application;
 using Intellexi.TrailRacing.Persistence;
 using Intellexi.TrailRacing.QueryService;
@@ -7,15 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
+
 builder.Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
     .AddApplication()
-    .AddRabbitMq(builder.Configuration)
     .AddPersistence(builder.Configuration)
-    .AddControllers();
-
-builder.Services.AddHostedService<RabbitMqConsumer>();
+    .AddRabbitMq(builder.Configuration)
+    .AddHostedService<RabbitMqConsumer>()
+    .AddMessageHandlersFromAssembly(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 

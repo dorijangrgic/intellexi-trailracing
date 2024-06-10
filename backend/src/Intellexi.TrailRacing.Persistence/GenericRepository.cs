@@ -9,7 +9,7 @@ public class GenericRepository<T>
     : RepositoryBase<T>, IGenericRepository<T>
     where T : class
 {
-    public GenericRepository(DbContext dbContext) : base(dbContext)
+    public GenericRepository(TrailRacingDbContext dbContext) : base(dbContext)
     {
     }
 }

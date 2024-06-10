@@ -1,6 +1,9 @@
 ﻿using System.Text;
+using Intellexi.TrailRacing.Application.RaceManagement.Requests;
+using Intellexi.TrailRacing.QueryService.MessageHandlers;
 using Intellexi.TrailRacing.RabbitMq;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -11,10 +14,17 @@ public class RabbitMqConsumer : IHostedService, IDisposable
     private IConnection _connection;
     private IModel _channel;
     private readonly RabbitMqConfig _config;
+    private readonly IServiceProvider _serviceProvider;
 
-    public RabbitMqConsumer(IOptions<RabbitMqConfig> config)
+    public RabbitMqConsumer(
+        IOptions<RabbitMqConfig> config,
+        IServiceProvider serviceProvider)
     {
+        ArgumentNullException.ThrowIfNull(config);
+        ArgumentNullException.ThrowIfNull(serviceProvider);
+
         _config = config.Value;
+        _serviceProvider = serviceProvider;
     }
 
     public Task StartAsync(CancellationToken cancellationToken)
@@ -30,14 +40,7 @@ public class RabbitMqConsumer : IHostedService, IDisposable
         _channel = _connection.CreateModel();
 
         var consumer = new EventingBasicConsumer(_channel);
-        consumer.Received += (model, ea) =>
-        {
-            var body = ea.Body.ToArray();
-            var message = Encoding.UTF8.GetString(body);
-            Console.WriteLine($"Received message: {message}");
-
-            // deserialize message to a domain message object and call appropriate handler
-        };
+        consumer.Received += async (model, ea) => await HandleReceivedMessage(model, ea);
 
         _channel.BasicConsume(
             queue: _config.QueueName,
@@ -45,6 +48,28 @@ public class RabbitMqConsumer : IHostedService, IDisposable
             consumer: consumer);
 
         return Task.CompletedTask;
+    }
+
+    private async Task HandleReceivedMessage(object _, BasicDeliverEventArgs eventArgs)
+    {
+        var body = eventArgs.Body.ToArray();
+        var message = JsonConvert.DeserializeObject(Encoding.UTF8.GetString(body));
+
+        // TODO error handling + logging
+        using (var scope = _serviceProvider.CreateScope())
+        {
+            var messageType = message.GetType();
+            var handlerType = typeof(IMessageHandler<>).MakeGenericType(messageType);
+            var handler = scope.ServiceProvider.GetService(handlerType);
+            if (handler != null)
+            {
+                var method = handler.GetType().GetMethod("HandleAsync");
+                if (method != null)
+                {
+                    await (Task)method.Invoke(handler, [message]);
+                }
+            }
+        }
     }
 
     public Task StopAsync(CancellationToken cancellationToken)
