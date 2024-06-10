@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
-namespace Intellexi.TrailRacing.CommandService;
+namespace Intellexi.TrailRacing.Application.Common;
 
 public class KebabRoutingConvention
     : IControllerModelConvention

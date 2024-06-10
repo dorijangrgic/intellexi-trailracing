@@ -17,7 +17,7 @@ public static class Setup
             options.UseSnakeCaseNamingConvention();
         });
 
-        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
         return services;
     }

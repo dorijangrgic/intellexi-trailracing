@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Intellexi.TrailRacing.Application.RaceManagement.Requests;
 using Intellexi.TrailRacing.QueryService.MessageHandlers;
 using Intellexi.TrailRacing.RabbitMq;
 using Microsoft.Extensions.Options;
@@ -55,20 +54,26 @@ public class RabbitMqConsumer : IHostedService, IDisposable
         var body = eventArgs.Body.ToArray();
         var message = JsonConvert.DeserializeObject(Encoding.UTF8.GetString(body));
 
-        // TODO error handling + logging
-        using (var scope = _serviceProvider.CreateScope())
+        try
         {
-            var messageType = message.GetType();
-            var handlerType = typeof(IMessageHandler<>).MakeGenericType(messageType);
-            var handler = scope.ServiceProvider.GetService(handlerType);
-            if (handler != null)
+            using (var scope = _serviceProvider.CreateScope())
             {
-                var method = handler.GetType().GetMethod("HandleAsync");
-                if (method != null)
+                var messageType = message.GetType();
+                var handlerType = typeof(IMessageHandler<>).MakeGenericType(messageType);
+                var handler = scope.ServiceProvider.GetService(handlerType);
+                if (handler != null)
                 {
-                    await (Task)method.Invoke(handler, [message]);
+                    var method = handler.GetType().GetMethod("HandleAsync");
+                    if (method != null)
+                    {
+                        await (Task)method.Invoke(handler, [message]);
+                    }
                 }
             }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
         }
     }
 

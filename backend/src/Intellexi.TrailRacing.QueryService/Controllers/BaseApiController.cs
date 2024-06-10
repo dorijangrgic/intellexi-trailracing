@@ -3,7 +3,7 @@ using Intellexi.TrailRacing.Application.Common.ErrorHandling;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Intellexi.TrailRacing.CommandService.Controllers;
+namespace Intellexi.TrailRacing.QueryService.Controllers;
 
 [ApiController]
 [Route("api/v{version:apiVersion}/[controller]s")]

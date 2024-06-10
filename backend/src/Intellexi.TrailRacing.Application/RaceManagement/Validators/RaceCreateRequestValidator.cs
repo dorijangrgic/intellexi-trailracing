@@ -11,7 +11,6 @@ public class RaceCreateRequestValidator : AbstractValidator<RaceCreateRequest>
             .NotEmpty()
             .MaximumLength(MaxPropertyLength);
         
-        RuleFor(x => x.Distance)
-            .IsInEnum();
+        RuleFor(x => x.Distance).IsInEnum();
     }
 }

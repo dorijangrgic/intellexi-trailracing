@@ -1,4 +1,6 @@
-﻿using Intellexi.TrailRacing.Application.RaceManagement.Requests;
+﻿using Ardalis.GuardClauses;
+using Intellexi.TrailRacing.Application.Common;
+using Intellexi.TrailRacing.Application.RaceManagement.Requests;
 using Intellexi.TrailRacing.Application.Services;
 using Intellexi.TrailRacing.Domain.Entities;
 
@@ -6,9 +8,9 @@ namespace Intellexi.TrailRacing.QueryService.MessageHandlers.RaceHandlers;
 
 public class RaceDeletedMessageHandler : IMessageHandler<RaceDeleteRequest>
 {
-    private readonly IGenericRepository<Race> _raceRepository;
+    private readonly IRepository<Race> _raceRepository;
 
-    public RaceDeletedMessageHandler(IGenericRepository<Race> raceRepository)
+    public RaceDeletedMessageHandler(IRepository<Race> raceRepository)
     {
         ArgumentNullException.ThrowIfNull(raceRepository);
         _raceRepository = raceRepository;
@@ -16,10 +18,10 @@ public class RaceDeletedMessageHandler : IMessageHandler<RaceDeleteRequest>
 
     public async Task HandleAsync(RaceDeleteRequest message)
     {
-        var existingRace = await _raceRepository.GetByIdAsync(message.RaceId);
+        var race = await _raceRepository.GetByIdAsync(message.RaceId);
 
-        if (existingRace is null) throw new Exception($"Race with id [{message.RaceId}] not found.");
+        Guard.Against.EntityNotFound(race, message.RaceId);
         
-        await _raceRepository.DeleteAsync(existingRace);
+        await _raceRepository.DeleteAsync(race);
     }
 }

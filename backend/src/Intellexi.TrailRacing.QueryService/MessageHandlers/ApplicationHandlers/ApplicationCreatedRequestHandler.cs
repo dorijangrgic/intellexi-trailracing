@@ -5,9 +5,9 @@ namespace Intellexi.TrailRacing.QueryService.MessageHandlers.ApplicationHandlers
 
 public class ApplicationCreatedRequestHandler : IMessageHandler<ApplicationCreateRequest>
 {
-    private readonly IGenericRepository<Domain.Entities.Application> _applicationRepository;
+    private readonly IRepository<Domain.Entities.Application> _applicationRepository;
 
-    public ApplicationCreatedRequestHandler(IGenericRepository<Domain.Entities.Application> applicationRepository)
+    public ApplicationCreatedRequestHandler(IRepository<Domain.Entities.Application> applicationRepository)
     {
         ArgumentNullException.ThrowIfNull(applicationRepository);
         _applicationRepository = applicationRepository;

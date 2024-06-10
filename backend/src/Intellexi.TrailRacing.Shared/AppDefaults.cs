@@ -10,4 +10,9 @@ public static class AppDefaults
         public const string DatabaseName = "intellexi";
         public const string SchemaName = "trail_racing";
     }
+    
+    public static class ErrorMessages
+    {
+        public const string EntityNotFound = "{0} with the ID: {1} does not exist.";
+    }
 }

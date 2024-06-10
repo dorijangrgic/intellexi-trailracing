@@ -7,14 +7,12 @@ public class RaceUpdateRequestValidator : AbstractValidator<RaceUpdateRequest>
 {
     public RaceUpdateRequestValidator()
     {
-        RuleFor(x => x.RaceId)
-            .NotEmpty();
+        RuleFor(x => x.RaceId).NotEmpty();
         
         RuleFor(x => x.Name)
             .NotEmpty()
             .MaximumLength(MaxPropertyLength);
         
-        RuleFor(x => x.Distance)
-            .IsInEnum();
+        RuleFor(x => x.Distance).IsInEnum();
     }
 }

@@ -3,9 +3,9 @@ using Intellexi.TrailRacing.Application.RaceManagement.Requests;
 
 namespace Intellexi.TrailRacing.Application.RaceManagement.Validators;
 
-public class RaceDeleteRequestValidator : AbstractValidator<RaceDeleteRequest>
+public class RaceGetDetailsValidator : AbstractValidator<RaceGetDetailsRequest>
 {
-    public RaceDeleteRequestValidator()
+    public RaceGetDetailsValidator()
     {
         RuleFor(x => x.RaceId).NotEmpty();
     }

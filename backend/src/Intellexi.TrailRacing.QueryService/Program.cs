@@ -8,18 +8,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddControllers();
 
 builder.Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
-    .AddApplication()
+    .AddWebApi()
+    .AddErrorHandling()
+    .AddMediator()
+    .AddValidation()
     .AddPersistence(builder.Configuration)
     .AddRabbitMq(builder.Configuration)
     .AddHostedService<RabbitMqConsumer>()
     .AddMessageHandlersFromAssembly(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
+
+app.UseErrorHandling();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

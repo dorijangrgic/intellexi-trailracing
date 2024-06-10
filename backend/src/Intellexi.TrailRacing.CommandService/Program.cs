@@ -1,5 +1,6 @@
 using Intellexi.TrailRacing.Application;
 using Intellexi.TrailRacing.CommandService;
+using Intellexi.TrailRacing.Persistence;
 using Intellexi.TrailRacing.RabbitMq;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,10 +12,15 @@ builder.Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
     .AddWebApi()
-    .AddApplication()
+    .AddErrorHandling()
+    .AddMediator()
+    .AddValidation()
+    .AddPersistence(builder.Configuration)
     .AddRabbitMq(builder.Configuration);
 
 var app = builder.Build();
+
+app.UseErrorHandling();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

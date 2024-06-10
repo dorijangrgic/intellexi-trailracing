@@ -1,5 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using Asp.Versioning;
+using Intellexi.TrailRacing.Application.Common;
+using Intellexi.TrailRacing.CommandService.ExceptionHandlers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Intellexi.TrailRacing.CommandService;
@@ -23,12 +25,10 @@ public static class Setup
             {
                 options.UseDefaultJsonOptions();
             });
-        
-        services.AddProblemDetails();
-        
+
         return services;
     }
-    
+
     private static IServiceCollection ConfigureApiVersioning(this IServiceCollection services)
     {
         services.AddApiVersioning(options =>
@@ -55,5 +55,21 @@ public static class Setup
     {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         return options;
+    }
+    
+    public static IServiceCollection AddErrorHandling(this IServiceCollection services)
+    {
+        services.AddExceptionHandler<BaseServiceExceptionHandler>();
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddProblemDetails();
+
+        return services;
+    }
+
+    public static IApplicationBuilder UseErrorHandling(this IApplicationBuilder builder)
+    {
+        builder.UseExceptionHandler();
+
+        return builder;
     }
 }

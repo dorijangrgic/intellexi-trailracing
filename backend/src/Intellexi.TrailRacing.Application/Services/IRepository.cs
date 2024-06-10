@@ -2,7 +2,7 @@
 
 namespace Intellexi.TrailRacing.Application.Services;
 
-public interface IGenericRepository<T> 
+public interface IRepository<T> 
     : IRepositoryBase<T>
     where T : class
 {

@@ -6,9 +6,9 @@ namespace Intellexi.TrailRacing.QueryService.MessageHandlers.RaceHandlers;
 
 public class RaceCreatedMessageHandler : IMessageHandler<RaceCreateRequest>
 {
-    private readonly IGenericRepository<Race> _raceRepository;
+    private readonly IRepository<Race> _raceRepository;
 
-    public RaceCreatedMessageHandler(IGenericRepository<Race> raceRepository)
+    public RaceCreatedMessageHandler(IRepository<Race> raceRepository)
     {
         ArgumentNullException.ThrowIfNull(raceRepository);
         _raceRepository = raceRepository;
