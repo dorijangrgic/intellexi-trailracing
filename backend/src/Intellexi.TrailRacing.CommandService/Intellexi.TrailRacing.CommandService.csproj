@@ -15,6 +15,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Intellexi.TrailRacing.Application\Intellexi.TrailRacing.Application.csproj" />
       <ProjectReference Include="..\Intellexi.TrailRacing.Persistence\Intellexi.TrailRacing.Persistence.csproj" />
+      <ProjectReference Include="..\Intellexi.TrailRacing.RabbitMq\Intellexi.TrailRacing.RabbitMq.csproj" />
     </ItemGroup>
 
 </Project>

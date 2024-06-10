@@ -12,6 +12,16 @@
 
     <ItemGroup>
       <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
+      <PackageReference Include="FluentValidation" Version="11.9.1" />
+      <PackageReference Include="MediatR" Version="12.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="ApplicationManagement\Handlers\" />
+      <Folder Include="ApplicationManagement\Requests\" />
+      <Folder Include="ApplicationManagement\Responses\" />
+      <Folder Include="ApplicationManagement\Validators\" />
+      <Folder Include="RaceManagement\Responses\" />
     </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿using Ardalis.Specification.EntityFrameworkCore;
 using Intellexi.TrailRacing.Application;
+using Intellexi.TrailRacing.Application.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Intellexi.TrailRacing.Persistence;

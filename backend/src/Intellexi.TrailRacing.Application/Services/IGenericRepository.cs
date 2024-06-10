@@ -1,6 +1,6 @@
 ﻿using Ardalis.Specification;
 
-namespace Intellexi.TrailRacing.Application;
+namespace Intellexi.TrailRacing.Application.Services;
 
 public interface IGenericRepository<T> 
     : IRepositoryBase<T>

@@ -3,6 +3,7 @@
 public static class AppDefaults
 {
     public const int MaxPropertyLength = 255;
+    public const string BusSection = "Bus";
 
     public static class Persistence
     {

@@ -1,4 +1,5 @@
-﻿using Intellexi.TrailRacing.Shared;
+﻿using Intellexi.TrailRacing.Application.Services;
+using Intellexi.TrailRacing.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,8 @@ public static class Setup
             options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             options.UseSnakeCaseNamingConvention();
         });
+
+        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
         return services;
     }
