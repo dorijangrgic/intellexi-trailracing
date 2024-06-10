@@ -3,6 +3,6 @@ using MediatR;
 
 namespace Intellexi.TrailRacing.Application.RaceManagement.Requests;
 
-public class RaceGetListRequest : IRequest<IEnumerable<RaceGetListResponse>>
+public class RaceGetListRequest : IRequest<RaceGetListResponse>
 {
 }

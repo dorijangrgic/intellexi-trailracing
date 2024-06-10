@@ -1,8 +1,9 @@
 ﻿using Intellexi.TrailRacing.Domain;
+using Intellexi.TrailRacing.Domain.Entities;
 
 namespace Intellexi.TrailRacing.Application.RaceManagement.Models;
 
-public abstract class RaceModel
+public class RaceModel
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
@@ -14,4 +15,6 @@ public abstract class RaceModel
         Name = name;
         Distance = distance;
     }
+
+    public static RaceModel From(Race race) => new(race.Id, race.Name, race.Distance);
 }

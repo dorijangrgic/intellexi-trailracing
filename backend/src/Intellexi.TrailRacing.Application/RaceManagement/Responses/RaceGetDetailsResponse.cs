@@ -10,5 +10,5 @@ public class RaceGetDetailsResponse : RaceModel
     {
     }
 
-    public static RaceGetDetailsResponse From(Race race) => new(race.Id, race.Name, race.Distance);
+    public new static RaceGetDetailsResponse From(Race race) => new(race.Id, race.Name, race.Distance);
 }

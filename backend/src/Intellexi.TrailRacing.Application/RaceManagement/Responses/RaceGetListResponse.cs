@@ -1,14 +1,17 @@
 ﻿using Intellexi.TrailRacing.Application.RaceManagement.Models;
-using Intellexi.TrailRacing.Domain;
 using Intellexi.TrailRacing.Domain.Entities;
 
 namespace Intellexi.TrailRacing.Application.RaceManagement.Responses;
 
-public class RaceGetListResponse : RaceModel
+public class RaceGetListResponse
 {
-    private RaceGetListResponse(Guid id, string name, RaceDistance distance) : base(id, name, distance)
-    {
-    }
+    public IEnumerable<RaceModel> Races { get; set; } = [];
 
-    public static RaceGetListResponse From(Race race) => new(race.Id, race.Name, race.Distance);
+    public static RaceGetListResponse From(List<Race> race)
+    {
+        return new RaceGetListResponse
+        {
+            Races = race.Select(RaceModel.From)
+        };
+    }
 }

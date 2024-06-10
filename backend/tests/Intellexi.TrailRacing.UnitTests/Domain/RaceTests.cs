@@ -2,7 +2,7 @@
 using FluentAssertions;
 using Intellexi.TrailRacing.Domain;
 using Intellexi.TrailRacing.Domain.Entities;
-using Intellexi.TrailRacing.Tests.Shared.Builders;
+using Intellexi.TrailRacing.Tests.Shared.Builders.Domain;
 using Intellexi.TrailRacing.UnitTests.Domain.Fixtures;
 
 namespace Intellexi.TrailRacing.UnitTests.Domain;

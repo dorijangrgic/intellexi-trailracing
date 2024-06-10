@@ -3,15 +3,16 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <Nullable>disable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\Intellexi.TrailRacing.Domain\Intellexi.TrailRacing.Domain.csproj" />
+      <ProjectReference Include="..\..\src\Intellexi.TrailRacing.Application\Intellexi.TrailRacing.Application.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="FluentAssertions" Version="6.12.0" />
+      <PackageReference Include="NSubstitute" Version="5.1.0" />
     </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Intellexi.TrailRacing.Application.ApplicationManagement.Handlers;
 
-public class ApplicationGetListRequestHandler : IRequestHandler<ApplicationGetListRequest, IEnumerable<ApplicationGetListResponse>>
+public class ApplicationGetListRequestHandler : IRequestHandler<ApplicationGetListRequest, ApplicationGetListResponse>
 {
     private readonly IRepository<Domain.Entities.Application> _applicationRepository;
 
@@ -17,10 +17,9 @@ public class ApplicationGetListRequestHandler : IRequestHandler<ApplicationGetLi
         _applicationRepository = applicationRepository;
     }
 
-    public async Task<IEnumerable<ApplicationGetListResponse>> Handle(ApplicationGetListRequest request, CancellationToken cancellationToken)
+    public async Task<ApplicationGetListResponse> Handle(ApplicationGetListRequest request, CancellationToken cancellationToken)
     {
-        var application = await _applicationRepository.ListAsync(cancellationToken);
-
-        return application.Select(ApplicationGetListResponse.From);
+        var applications = await _applicationRepository.ListAsync(cancellationToken);
+        return ApplicationGetListResponse.From(applications);
     }
 }

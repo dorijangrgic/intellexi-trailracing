@@ -1,6 +1,6 @@
 ﻿namespace Intellexi.TrailRacing.Application.ApplicationManagement.Models;
 
-public abstract class ApplicationModel
+public class ApplicationModel
 {
     public Guid Id { get; set; }
     public Guid RaceId { get; set; }
@@ -15,5 +15,15 @@ public abstract class ApplicationModel
         FirstName = firstName;
         LastName = lastName;
         Club = club;
+    }
+    
+    public static ApplicationModel From(Domain.Entities.Application application)
+    {
+        return new(
+            application.Id,
+            application.RaceId,
+            application.FirstName,
+            application.LastName,
+            application.Club);
     }
 }

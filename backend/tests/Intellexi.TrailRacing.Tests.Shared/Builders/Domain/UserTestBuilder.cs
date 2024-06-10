@@ -1,7 +1,7 @@
 ﻿using Intellexi.TrailRacing.Domain;
 using Intellexi.TrailRacing.Domain.Entities;
 
-namespace Intellexi.TrailRacing.Tests.Shared.Builders;
+namespace Intellexi.TrailRacing.Tests.Shared.Builders.Domain;
 
 public class UserTestBuilder
 {

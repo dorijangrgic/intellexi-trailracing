@@ -6,7 +6,7 @@ using MediatR;
 
 namespace Intellexi.TrailRacing.Application.RaceManagement.Handlers;
 
-public class RaceGetListRequestHandler : IRequestHandler<RaceGetListRequest, IEnumerable<RaceGetListResponse>>
+public class RaceGetListRequestHandler : IRequestHandler<RaceGetListRequest, RaceGetListResponse>
 {
     private readonly IRepository<Race> _raceRepository;
 
@@ -16,9 +16,9 @@ public class RaceGetListRequestHandler : IRequestHandler<RaceGetListRequest, IEn
         _raceRepository = raceRepository;
     }
 
-    public async Task<IEnumerable<RaceGetListResponse>> Handle(RaceGetListRequest request, CancellationToken cancellationToken)
+    public async Task<RaceGetListResponse> Handle(RaceGetListRequest request, CancellationToken cancellationToken)
     {
         var races = await _raceRepository.ListAsync(cancellationToken);
-        return races.Select(RaceGetListResponse.From);
+        return RaceGetListResponse.From(races);
     }
 }

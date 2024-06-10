@@ -2,24 +2,15 @@
 
 namespace Intellexi.TrailRacing.Application.ApplicationManagement.Responses;
 
-public class ApplicationGetListResponse : ApplicationModel
+public class ApplicationGetListResponse
 {
-    public ApplicationGetListResponse(
-        Guid id,
-        Guid raceId,
-        string firstName,
-        string lastName,
-        string club) : base(id, raceId, firstName, lastName, club)
-    {
-    }
+    public IEnumerable<ApplicationModel> Applications { get; set; }
     
-    public static ApplicationGetListResponse From(Domain.Entities.Application application)
+    public static ApplicationGetListResponse From(List<Domain.Entities.Application> application)
     {
-        return new(
-            application.Id,
-            application.RaceId,
-            application.FirstName,
-            application.LastName,
-            application.Club);
+        return new ApplicationGetListResponse
+        {
+            Applications = application.Select(ApplicationModel.From)
+        };
     }
 }

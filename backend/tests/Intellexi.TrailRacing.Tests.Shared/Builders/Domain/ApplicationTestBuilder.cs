@@ -1,6 +1,4 @@
-﻿using Intellexi.TrailRacing.Domain.Entities;
-
-namespace Intellexi.TrailRacing.Tests.Shared.Builders;
+﻿namespace Intellexi.TrailRacing.Tests.Shared.Builders.Domain;
 
 public class ApplicationTestBuilder
 {
@@ -42,8 +40,8 @@ public class ApplicationTestBuilder
         return this;
     }
     
-    public Application Build()
+    public TrailRacing.Domain.Entities.Application Build()
     {
-        return Application.Create(_firstName, _lastName, _club, _raceId);
+        return TrailRacing.Domain.Entities.Application.Create(_firstName, _lastName, _club, _raceId);
     }
 }

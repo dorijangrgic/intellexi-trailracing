@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Intellexi.TrailRacing.Domain.Entities;
 using Intellexi.TrailRacing.UnitTests.Domain.Fixtures;
 
 namespace Intellexi.TrailRacing.UnitTests.Domain;
@@ -13,7 +12,7 @@ internal class ApplicationTests : ApplicationTestsFixture
         string club)
     {
         // Act
-        Action action = () => Application.Create(firstName, lastName, club, Guid.NewGuid());
+        Action action = () => ApplicationEntity.Create(firstName, lastName, club, Guid.NewGuid());
 
         // Assert
         action.Should().Throw<ArgumentNullException>();
@@ -26,7 +25,7 @@ internal class ApplicationTests : ApplicationTestsFixture
         string club)
     {
         // Act
-        Action action = () => Application.Create(firstName, lastName, club, Guid.NewGuid());
+        Action action = () => ApplicationEntity.Create(firstName, lastName, club, Guid.NewGuid());
 
         // Assert
         action.Should().Throw<ArgumentException>();
@@ -40,7 +39,7 @@ internal class ApplicationTests : ApplicationTestsFixture
         Guid raceId)
     {
         // Act
-        var application = Application.Create(firstName, lastName, club, raceId);
+        var application = ApplicationEntity.Create(firstName, lastName, club, raceId);
 
         // Assert
         application.Id.Should().NotBe(Guid.Empty);
