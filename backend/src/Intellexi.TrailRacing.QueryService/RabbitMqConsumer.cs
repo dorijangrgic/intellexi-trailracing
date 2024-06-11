@@ -1,10 +1,13 @@
-﻿using System.Text;
+﻿using System.Net.Sockets;
+using System.Text;
 using Intellexi.TrailRacing.QueryService.MessageHandlers;
 using Intellexi.TrailRacing.RabbitMq;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Polly;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using RabbitMQ.Client.Exceptions;
 
 namespace Intellexi.TrailRacing.QueryService;
 
@@ -28,14 +31,7 @@ public class RabbitMqConsumer : IHostedService, IDisposable
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        var factory = new ConnectionFactory
-        {
-            HostName = _config.Host,
-            UserName = _config.Username,
-            Password = _config.Password
-        };
-
-        _connection = factory.CreateConnection();
+        EstablishConnection();
         _channel = _connection.CreateModel();
 
         var consumer = new EventingBasicConsumer(_channel);
@@ -49,6 +45,24 @@ public class RabbitMqConsumer : IHostedService, IDisposable
         return Task.CompletedTask;
     }
 
+    private void EstablishConnection()
+    {
+        var factory = new ConnectionFactory
+        {
+            HostName = _config.Host,
+            UserName = _config.Username,
+            Password = _config.Password
+        };
+
+        var retryPolicy = Policy
+            .Handle<SocketException>()
+            .Or<BrokerUnreachableException>()
+            .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
+
+        retryPolicy.Execute(() => _connection = factory.CreateConnection());
+        // _connection = factory.CreateConnection();
+    }
+
     private async Task HandleReceivedMessage(object _, BasicDeliverEventArgs eventArgs)
     {
         var body = eventArgs.Body.ToArray();
@@ -56,20 +70,11 @@ public class RabbitMqConsumer : IHostedService, IDisposable
 
         try
         {
-            using (var scope = _serviceProvider.CreateScope())
-            {
-                var messageType = message.GetType();
-                var handlerType = typeof(IMessageHandler<>).MakeGenericType(messageType);
-                var handler = scope.ServiceProvider.GetService(handlerType);
-                if (handler != null)
-                {
-                    var method = handler.GetType().GetMethod("HandleAsync");
-                    if (method != null)
-                    {
-                        await (Task)method.Invoke(handler, [message]);
-                    }
-                }
-            }
+            using var scope = _serviceProvider.CreateScope();
+            var messageType = message.GetType();
+            var handlerType = typeof(IMessageHandler<>).MakeGenericType(messageType);
+            var handler = scope.ServiceProvider.GetService(handlerType);
+            await (Task)handler?.GetType().GetMethod("HandleAsync")?.Invoke(handler, [message]);
         }
         catch (Exception e)
         {

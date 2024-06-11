@@ -2,17 +2,46 @@ version: '3.8'
 
 services:
 
+  db:
+    container_name: db
+    image: postgres:15.1
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: intellexi
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  rabbitmq:
+    container_name: message-broker
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+      RABBITMQ_CONFIG_FILE: /etc/rabbitmq/conf.d/rabbitmq.conf
+    volumes:
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/conf.d/rabbitmq.conf
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/conf.d/definitions.json
+    networks:
+      - backend
+
   command-service:
     container_name: command-service
     build:
-      context: backend/src/Intellexi.TrailRacing.CommandService
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: backend/src/Intellexi.TrailRacing.CommandService/Dockerfile
     ports:
       - "8081:8080"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
     depends_on:
-      - db
       - rabbitmq
     networks:
       - backend
@@ -20,8 +49,8 @@ services:
   query-service:
     container_name: query-service
     build:
-      context: backend/src/Intellexi.TrailRacing.QueryService
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: backend/src/Intellexi.TrailRacing.QueryService/Dockerfile
     ports:
       - "8082:8080"
     environment:
@@ -45,32 +74,6 @@ services:
     networks:
       - backend
       - frontend
-
-  rabbitmq:
-    container_name: message-broker
-    image: "rabbitmq:3-management"
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: admin
-      RABBITMQ_DEFAULT_PASS: admin
-    networks:
-      - backend
-
-  db:
-    container_name: db
-    image: postgres:15.1
-    ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin
-      POSTGRES_DB: intellexi
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - backend
 
 volumes:
   postgres_data:
