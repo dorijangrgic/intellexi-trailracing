@@ -43,3 +43,10 @@ List of available make commands:
 - `make test-integration` : runs the integration tests for the backend services
 
 - `make test-unit` : runs the unit tests for the backend services
+
+## TBD
+- Integration tests (for both Command and Query services)
+- Authorization (Identity API should be developed with backing Identity DBContext or Keycloak instance)
+- Logging
+- Proper RabbitMq consumer exception handling
+- Proper CommandService endpoint exception handling. Since CommandService does not communicate with a database, end user doesn't know if the modified resource even exists
