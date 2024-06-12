@@ -3,7 +3,7 @@ import {RaceService} from "../services/race.service";
 import {RaceModel} from "../models/race.models";
 import {MatTableModule} from "@angular/material/table";
 import {MatButton, MatButtonModule} from "@angular/material/button";
-import {Router, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {DeleteRaceDialog} from "../dialogs/delete-race/delete-race-dialog.component";
 
@@ -22,8 +22,10 @@ export class RacesComponent implements OnInit {
   constructor(
     private _raceService: RaceService,
     private _dialog: MatDialog,
-    private _router: Router
-  ) {}
+    private _router: Router,
+    private _route: ActivatedRoute,
+  ) {
+  }
 
   ngOnInit(): void {
     this._raceService.getRaces()
@@ -37,7 +39,7 @@ export class RacesComponent implements OnInit {
       if (result) {
         this._raceService.deleteRace(race.id)
           .subscribe({
-            next: () => window.location.reload(),
+            next: () => this._router.navigate([this._router.url]),
             error: () => alert(`Error while deleting a race ${race.id}`)
           });
       }
@@ -46,9 +48,5 @@ export class RacesComponent implements OnInit {
 
   apply(race: RaceModel) {
 
-  }
-
-  createRace() {
-    this._router.navigate(['/races/create']);
   }
 }

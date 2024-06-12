@@ -54,7 +54,7 @@ export class RaceDetailsComponent {
     this._raceService.editRace(this.raceId, this.raceForm.value)
       .subscribe({
         next: (response) => {
-          this._router.navigate(['/']);
+          this._router.navigate(['../'], { relativeTo: this._route });
         },
         error: () => {}
       });

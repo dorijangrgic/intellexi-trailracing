@@ -1,6 +1,6 @@
 # intellexi-trailracing
 
-## Prerequisited
+## Prerequisite
 - .NET 8 SDK for backend solution https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 - Node.js minimum v18.13 for frontend solution https://nodejs.org/en/download/package-manager
 - Docker engine https://docs.docker.com/engine/install/
@@ -25,7 +25,7 @@ Solution is designed following the Hexagonal Architecture principles (aka Clean 
 
 ## Frontend solution
 
-Angular v17 application developed in conjuction with Angular Material and TailwindCSS.
+Angular v17 application developed in conjuction with Angular Material.
 
 ## How-to-use
 
@@ -51,3 +51,4 @@ List of available make commands:
 - Logging
 - Proper RabbitMq consumer exception handling
 - Proper CommandService endpoint exception handling. Since CommandService does not communicate with a database, end user doesn't know if the modified resource even exists
+- Frontend race creation and complete application management as well as improved design
