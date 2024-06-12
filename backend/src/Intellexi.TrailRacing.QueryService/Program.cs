@@ -19,11 +19,14 @@ builder.Services
     .AddPersistence(builder.Configuration)
     .AddRabbitMq(builder.Configuration)
     .AddHostedService<RabbitMqConsumer>()
-    .AddMessageHandlersFromAssembly(Assembly.GetExecutingAssembly());
+    .AddMessageHandlersFromAssembly(Assembly.GetExecutingAssembly())
+    .AddCorsPolicy();
 
 var app = builder.Build();
 
-app.UseErrorHandling();
+app
+    .UseErrorHandling()
+    .UseCors();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

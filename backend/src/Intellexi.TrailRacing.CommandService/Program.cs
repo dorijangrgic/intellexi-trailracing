@@ -16,11 +16,14 @@ builder.Services
     .AddMediator()
     .AddValidation()
     .AddPersistence(builder.Configuration)
-    .AddRabbitMq(builder.Configuration);
+    .AddRabbitMq(builder.Configuration)
+    .AddCorsPolicy();
 
 var app = builder.Build();
 
-app.UseErrorHandling();
+app
+    .UseErrorHandling()
+    .UseCors();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
