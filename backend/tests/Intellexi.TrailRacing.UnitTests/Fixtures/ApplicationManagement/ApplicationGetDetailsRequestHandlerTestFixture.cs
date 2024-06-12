@@ -34,6 +34,6 @@ internal class ApplicationGetDetailsRequestHandlerTestFixture
 
         var response = ApplicationGetDetailsResponse.From(application);
         
-        yield return new TestCaseData(new ApplicationGetDetailsRequest(), application, response);
+        yield return new TestCaseData(new ApplicationGetDetailsRequest(application.Id), application, response);
     }
 }

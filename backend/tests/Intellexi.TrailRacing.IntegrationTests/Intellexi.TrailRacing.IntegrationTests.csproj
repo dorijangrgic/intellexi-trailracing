@@ -11,11 +11,37 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="FluentAssertions.Web" Version="1.2.5" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.3" />
+        <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" Version="8.6.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0"/>
         <PackageReference Include="NUnit" Version="3.13.3"/>
         <PackageReference Include="NUnit3TestAdapter" Version="4.2.1"/>
         <PackageReference Include="NUnit.Analyzers" Version="3.6.1"/>
         <PackageReference Include="coverlet.collector" Version="6.0.0"/>
+        <PackageReference Include="Testcontainers.PostgreSql" Version="3.8.0" />
+        <PackageReference Include="Testcontainers.RabbitMq" Version="3.8.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\src\Intellexi.TrailRacing.CommandService\Intellexi.TrailRacing.CommandService.csproj" />
+      <ProjectReference Include="..\..\src\Intellexi.TrailRacing.QueryService\Intellexi.TrailRacing.QueryService.csproj" />
+      <ProjectReference Include="..\Intellexi.TrailRacing.Tests.Shared\Intellexi.TrailRacing.Tests.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include=".files\rabbitmq\definitions.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include=".files\rabbitmq\rabbitmq.conf">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="appsettings.IntegrationTests.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

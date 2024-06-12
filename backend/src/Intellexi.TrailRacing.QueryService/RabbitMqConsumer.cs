@@ -60,7 +60,6 @@ public class RabbitMqConsumer : IHostedService, IDisposable
             .WaitAndRetry(5, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
 
         retryPolicy.Execute(() => _connection = factory.CreateConnection());
-        // _connection = factory.CreateConnection();
     }
 
     private async Task HandleReceivedMessage(object _, BasicDeliverEventArgs eventArgs)
@@ -84,8 +83,6 @@ public class RabbitMqConsumer : IHostedService, IDisposable
 
     public Task StopAsync(CancellationToken cancellationToken)
     {
-        _channel?.Close();
-        _connection?.Close();
         return Task.CompletedTask;
     }
     

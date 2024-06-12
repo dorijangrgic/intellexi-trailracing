@@ -7,6 +7,8 @@ public class ApplicationModel
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Club { get; set; }
+    
+    public ApplicationModel() { }
 
     protected ApplicationModel(Guid id, Guid raceId, string firstName, string lastName, string club)
     {

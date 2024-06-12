@@ -15,7 +15,7 @@ public class RaceController : BaseApiController
     [HttpGet("{raceId}")]
     public async Task<IActionResult> GetSingle([FromRoute] Guid raceId)
     {
-        var request = new RaceGetDetailsRequest { RaceId = raceId };
+        var request = new RaceGetDetailsRequest(raceId);
         var race = await Mediator.Send(request);
         return Ok(race);
     }

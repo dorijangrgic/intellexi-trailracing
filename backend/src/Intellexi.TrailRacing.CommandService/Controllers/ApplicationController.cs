@@ -9,7 +9,7 @@ public class ApplicationController : BaseApiController
     public async Task<IActionResult> Create([FromBody] ApplicationCreateRequest request)
     {
         await Mediator.Send(request);
-        return Created();
+        return Ok();
     }
     
     [HttpDelete("{applicationId}")]

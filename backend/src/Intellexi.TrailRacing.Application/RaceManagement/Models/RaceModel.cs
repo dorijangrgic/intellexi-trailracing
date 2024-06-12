@@ -8,6 +8,8 @@ public class RaceModel
     public Guid Id { get; set; }
     public string Name { get; set; }
     public RaceDistance Distance { get; set; }
+    
+    public RaceModel() { }
 
     public RaceModel(Guid id, string name, RaceDistance distance)
     {

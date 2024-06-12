@@ -32,6 +32,6 @@ internal class RaceGetDetailsRequestHandlerTestFixture
 
         var response = RaceGetDetailsResponse.From(race);
         
-        yield return new TestCaseData(new RaceGetDetailsRequest(), race, response);
+        yield return new TestCaseData(new RaceGetDetailsRequest(race.Id), race, response);
     }
 }

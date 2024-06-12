@@ -1,9 +1,12 @@
 # intellexi-trailracing
 
+## Prerequisited
+- .NET 8 SDK for backend solution https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+- Node.js minimum v18.13 for frontend solution https://nodejs.org/en/download/package-manager
+- Docker engine https://docs.docker.com/engine/install/
+
 ## Backend solution
 
-.NET 8 SDK should be installed on the local machine in order to successfully run the **dotnet cli commands**. 
-https://dotnet.microsoft.com/en-us/download/dotnet/8.0
 Solution is designed following the Hexagonal Architecture principles (aka Clean Architecture). It consists of Core, Adapters and Hosts projects:
 
 ![alt text](image.png)
@@ -22,8 +25,7 @@ Solution is designed following the Hexagonal Architecture principles (aka Clean 
 
 ## Frontend solution
 
-Angular v17 application developed in conjuction with Angular Material and TailwindCSS. Node.js version 18.13 or newer is required.
-https://nodejs.org/en/download/package-manager
+Angular v17 application developed in conjuction with Angular Material and TailwindCSS.
 
 ## How-to-use
 
@@ -45,7 +47,6 @@ List of available make commands:
 - `make test-unit` : runs the unit tests for the backend services
 
 ## TBD
-- Integration tests (for both Command and Query services)
 - Authorization (Identity API should be developed with backing Identity DBContext or Keycloak instance)
 - Logging
 - Proper RabbitMq consumer exception handling

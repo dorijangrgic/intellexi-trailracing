@@ -1,0 +1,48 @@
+{
+  "rabbit_version": "3.8.9",
+  "users": [
+    {
+      "name": "admin",
+      "password_hash": "/7Pmw49Lg6o//A6J3KRoXK5ZzyLXW0HotoOuupcuMrYs0Hyw",
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "admin",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "queues": [
+    {
+      "name": "trail-racing",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-mode": "lazy",
+        "x-queue-type": "classic"
+      }
+    }
+  ],
+  "exchanges": [],
+  "bindings": [
+    {
+      "source": "amq.direct",
+      "vhost": "/",
+      "destination": "trail-racing",
+      "destination_type": "queue",
+      "routing_key": "trail-racing",
+      "arguments": {}
+    }
+  ]
+}

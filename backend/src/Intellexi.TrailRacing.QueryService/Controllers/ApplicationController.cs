@@ -16,7 +16,7 @@ public class ApplicationController : BaseApiController
     [HttpGet("{applicationId}")]
     public async Task<IActionResult> GetSingle([FromRoute] Guid applicationId)
     {
-        var request = new ApplicationGetDetailsRequest { ApplicationId = applicationId };
+        var request = new ApplicationGetDetailsRequest(applicationId);
         var application = await Mediator.Send(request);
         return Ok(application);
     }

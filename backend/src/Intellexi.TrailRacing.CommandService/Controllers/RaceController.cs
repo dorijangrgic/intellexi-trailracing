@@ -9,7 +9,7 @@ public class RaceController : BaseApiController
     public async Task<IActionResult> Create([FromBody] RaceCreateRequest request)
     {
         await Mediator.Send(request);
-        return Created();
+        return Ok();
     }
     
     [HttpPut("{raceId}")]

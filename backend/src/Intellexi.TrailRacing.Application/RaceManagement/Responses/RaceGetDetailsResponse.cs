@@ -6,6 +6,8 @@ namespace Intellexi.TrailRacing.Application.RaceManagement.Responses;
 
 public class RaceGetDetailsResponse : RaceModel
 {
+    public RaceGetDetailsResponse() { }
+
     private RaceGetDetailsResponse(Guid id, string name, RaceDistance distance) : base(id, name, distance)
     {
     }

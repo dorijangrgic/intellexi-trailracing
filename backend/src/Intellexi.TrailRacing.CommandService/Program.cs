@@ -34,3 +34,10 @@ app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();
+
+namespace Intellexi.TrailRacing.CommandService
+{
+    public class Program
+    {
+    }
+}

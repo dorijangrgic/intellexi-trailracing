@@ -48,7 +48,8 @@ public class ApplicationCreateRequestTestBuilder
         {
             FirstName = _firstName,
             LastName = _lastName,
-            Club = _club
+            Club = _club,
+            RaceId = _raceId
         };
     }
 }

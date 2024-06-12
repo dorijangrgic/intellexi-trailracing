@@ -37,3 +37,10 @@ app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();
+
+namespace Intellexi.TrailRacing.QueryService
+{
+    public class Program
+    {
+    }
+}
