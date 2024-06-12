@@ -12,6 +12,9 @@ QUERY_PROJECT_PATH = ./backend/src/Intellexi.TrailRacing.QueryService/Intellexi.
 UNIT_TEST_PROJECT_PATH = ./backend/tests/Intellexi.TrailRacing.UnitTests/Intellexi.TrailRacing.UnitTests.csproj
 INTEGRATION_TEST_PROJECT_PATH = ./backend/tests/Intellexi.TrailRacing.IntegrationTests/Intellexi.TrailRacing.IntegrationTests.csproj
 
+# DB connection string
+CONNECTION_STRING = "Server=localhost;Port=5432;User Id=admin;Password=admin;Database=intellexi"
+
 # Run Docker Compose
 .PHONY: up
 up:
@@ -19,8 +22,10 @@ up:
 
 # Apply database migrations
 .PHONY: apply-migrations
-migrate:
-	dotnet ef database update --startup-project $(QUERY_PROJECT_PATH) --project $(MIGRATION_PROJECT_PATH)
+apply-migrations:
+	$(DOCKER_COMPOSE_CMD) up db -d
+	dotnet ef database update --startup-project $(QUERY_PROJECT_PATH) --project $(MIGRATION_PROJECT_PATH) --connection $(CONNECTION_STRING)
+	$(DOCKER_COMPOSE_CMD) down
 
 # Run backend unit tests
 .PHONY: test-unit
