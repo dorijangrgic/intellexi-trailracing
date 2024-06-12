@@ -34,9 +34,9 @@ Install **make cli** in an elevated shell (administrator privileges) in order to
 
 List of available make commands:
 
-- `make up` : starts all services defined in the docker-compose.yml file
+- `make apply-migrations` : applies database migrations against the local database container
 
-- `make apply-migrations` : applies database migrations against the running database container (services should be up-and-running in order to successfully apply database migrations)
+- `make up` : starts all services defined in the docker-compose.yml file
 
 - `make down` : stops all running services defined in the docker-compose.yml file
 
